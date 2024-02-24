@@ -1,0 +1,74 @@
+f//1. Schritt: Variablen definieren
+
+P_i_j_k für i, j in {1, ..., 9} und k in {1, ..., 9}
+
+-- Nicht vergessen, ja es gibt nur zwei Zustände (true/false), aber es gibt mehrere Variablen (Zahlen)
+-- d.h. du kannst eine Bedingung setzen, wo nur bspw. nur die eine Variable true sein darf (in nem 3x3-Block oder so)
+
+-- Wie beim n-Queens Problem machen (Pi OR Pi+1 OR Pi+2) AND (NOT Pi OR NOT Pi+1) AND (NOT Pi OR NOT Pi+2) AND (NOT Pi+1 OR NOT Pi+2)
+
+
+-- Wenn vordefiniertes Feld, dann Klausel zu demjenigen Feld zu einer Unit-Klausel machen mit derjenigen Feld-Variablen
+
+-- Wenn Feld lösbar, dann wir komplettes Spielfeld 'true', es werden die Variablennamen angeschaut um zu sehen welcher Wert in dem Feld ist
+
+
+-- 
+(Z1 OR Z2 OR Z3 OR Z4 OR Z5 OR Z6 OR Z8 OR Z9)
+AND (NOT Z1 OR NOT Z2) AND (NOT Z1 OR NOT Z2) AND (NOT Z1 OR Z3) AND ...
+...
+...
+AND (NOT Z8 OR NOT Z9)
+
+
+Man benötigt 9x9x9 Variablen, da Zik die Position angibt und Zijz, welche Ziffer sich dahinter verbirgt
+
+https://users.aalto.fi/~tjunttil/2020-DP-AUT/notes-sat/solving.html
+
+P_i_j_k z.B.:   1. Position mit Value =1   ==  P_1_1_1,    mit Value =2    ==  P_1_1_2
+
+mit Arrays und For-Schleifen Realisieren
+
+Für das erste Feld:
+1 -- (Z_1_1_1 OR Z_1_1_2 OR Z_1_1_3 OR Z_1_1_4 OR Z_1_1_5 OR Z_1_1_6 OR Z_1_1_8 OR Z_1_1_9)  //Jede Variable ist zulässig für ein Feld
+2 -- AND (NOT Z_1_1_1 OR NOT Z_1_1_2) AND (NOT Z_1_1_1 OR NOT Z_1_1_2) ... AND (NOT Z_1_1_1 OR NOT Z_1_1_9)
+...         //Aber nicht zwei auf einmal
+...
+3 -- AND (NOT Z_1_1_8 OR NOT Z_1_1_9)
+
+
+//2. Schritt: Einzelne Zahl pro Feld: Sicherstellen, dass mindestens und maximal eine Zahl pro Feld vorhanden ist
+#Oder anders ausgedrückt: 1 ist dazu da, damit jedes Feld mindestens einen Wert hat
+# 2 und 3 sind dazu da, dass jedes Feld nur maximal einen Wert hat
+
+
+SCHRITT 3 UND 4 SIND NICHT FALSCH, ABER ZUSÄTZLICHE KLAUSELN DIE DAS GANZE SPEZIFIZIEREN, FÜHREN DAZU DASS DER SOLVER SCHNELLER DURCHLÄUFT
+
+//3. Schritt: Jede Zeile hat alle Zahlen
+(Z_r1v OR Z_r2v OR Z_r3v ... OR Z_rnv)
+
+Bsp. 1. Zeile
+(Z_11v OR Z_12v OR Z_13v OR Z_14v OR Z_15v OR Z_16v OR Z_17v OR Z_18v OR Z_19v)
+
+
+
+//4. Schritt: Jede Spalte hat alle Zahlen
+
+Bsp. 1. Spalte
+(Z_11v OR Z_21v OR Z_31v OR ... OR Z_91v) AND 2. Spalte ...
+
+
+SCHRITT 5 GENAUSO WIE SCHRITT 3, 4 MACHEN
+
+
+//5. Schritt: Jeder 3x3 Block hat alle Zahlen
+Z_i_j_k
+//Für 1. Block (oben links)
+1 <= i <= 3
+1 <= j <= 3
+1 <= v <= n
+//Beispiel an Spalte/Zeile nehmen
+
+//6. Schritt: Vorgegebene Zahlen, bzw. vorgegebenes Spielfeld
+
+Wenn bei Spielfeld ein Position eine Zahl besitzt, dann soll diejenige Variable an der Position auch true sein

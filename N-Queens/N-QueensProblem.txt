@@ -1,0 +1,104 @@
+4 Queens Problem
+
+1. Schritt Variablen festlegen:
+
+	Q1	Q2	Q3	Q4
+	Q5	Q6	Q7	Q8
+	Q9	Q10	Q11	Q12
+	Q13	Q14	Q15	Q16
+
+2. Schritt bedingungen Formulieren:
+	- Jede Zeile soll genau eine Dame enthalten:
+
+		1. Zeile:
+		(Q1 OR Q2 OR Q3 OR Q4) AND NOT(Q1 AND Q2) AND NOT(Q1 AND Q3) AND NOT(Q1 AND Q4) AND NOT(Q2 AND Q3) AND NOT(Q2 AND Q4) AND NOT(Q3 AND Q4)
+
+		KNF:
+		(q1 OR q2 OR q3 OR q4) AND (NOT q1 OR NOT q2) AND (NOT q1 OR NOT q3) AND (NOT q1 OR NOT q4) AND (NOT q2 OR NOT q3) AND (NOT q2 OR NOT q4) AND (NOT q3 or NOT q4)
+	
+		2. Zeile:
+		(Q5 OR Q6 OR Q7 OR Q8) AND NOT(Q5 AND Q6) AND NOT(Q5 AND Q7) AND NOT(Q5 AND Q8) AND NOT(Q6 AND Q7) AND NOT(Q6 AND Q8) AND NOT(Q7 AND Q8)
+		
+		3.Zeile:
+		(Q9 OR Q10 OR Q11 OR Q12) AND NOT(Q9 AND Q10) AND NOT(Q9 AND Q11) AND NOT(Q9 AND Q12) AND NOT(Q10 AND Q11) AND NOT(Q10 AND Q12) AND NOT(Q11 AND Q12)
+		
+		4.Zeile:
+		(Q13 OR Q14 OR Q15 OR Q16) AND NOT(Q13 AND Q14) AND NOT(Q13 AND Q15) AND NOT(Q13 AND Q16) AND NOT(Q14 AND Q15) AND NOT(Q14 AND Q15) AND NOT(Q15 AND Q16)
+		
+		
+
+
+	- Jede Spalte soll genau eine Dame enthalten:
+		1. Spalte:
+		(Q1 OR Q5 OR Q9 OR Q13) AND NOT(Q1 AND Q5) AND NOT(Q1 AND Q9) AND NOT(Q1 AND Q13) AND NOT(Q5 AND Q9) AND NOT(Q5 AND Q13) AND NOT(Q9 AND Q13)
+
+		KNF:
+		(q1 OR q5 OR q9 OR q13) AND (NOT q1 OR NOT q5) AND (NOT q1 OR NOT q9) AND (NOT q1 OR NOT q13) AND (NOT q5 OR NOT q9) AND (NOT q5 OR NOT q13) AND (NOT q9 OR NOT q13)
+
+		
+		2. Spalte:
+		(Q2 OR Q6 OR Q10 OR Q14) AND NOT(Q2 AND Q6) AND NOT(Q2 AND Q10) AND NOT(Q2 AND Q14) AND NOT(Q6 AND Q10) AND NOT(Q6 AND Q14) AND NOT(Q10 AND Q14)
+		
+		3. Spalte:
+		(Q3 OR Q7 OR Q11 OR Q15) AND NOT(Q3 AND Q7) AND NOT(Q3 AND Q11) AND NOT(Q3 AND Q15) AND NOT(Q7 AND Q11) AND NOT(Q7 AND Q15) AND NOT(Q11 AND Q15)
+		
+		4. Spalte:
+		(Q4 OR Q8 OR Q12 OR Q16) AND NOT(Q4 AND Q8) AND NOT(Q4 AND Q12) AND NOT(Q4 AND Q16) AND NOT(Q8 AND Q12) AND NOT(Q8 AND Q16) AND NOT(Q12 AND Q16)
+		
+		
+		
+
+	- Jede Diagonale soll höchstens eine Dame enthalten:
+	
+		Alle Diagonalen von Links oben Richtung rechts unten:
+			1. Diagonale Reihe:
+				(NOT q1 OR NOT q6)
+
+				(NOT q2 OR NOT q7)
+
+				(NOT q3 OR NOT q8)
+
+
+			2. Diagonale Reihe:
+				(NOT q5 OR NOT q10)
+
+				(NOT q6 OR NOT q11)
+
+				(NOT q7 OR NOT q12)
+
+
+			3. Diagonale Reihe:
+				(NOT q9 OR NOT q14)
+
+				(NOT q10 OR NOT q15)
+
+				(NOT q11 OR NOT q16)
+
+
+				
+				
+		Alle Diagonalen von Rechts oben Richtung links unten:
+			1. Diagonale Reihe:
+				(NOT q4 OR NOT q7)
+
+				(NOT q3 OR NOT q6)
+
+				(NOT q2 OR NOT q5)
+
+
+			2. Diagonale Reihe:
+				(NOT q8 OR NOT q11)
+
+				(NOT q7 OR NOT q10)
+
+				(NOT q6 OR NOT q9)
+
+
+			3. Diagonale Reihe:
+				(NOT q12 OR NOT q15)
+
+				(NOT q11 OR NOT q14)
+
+				(NOT q10 OR NOT q13)
+				
+	
